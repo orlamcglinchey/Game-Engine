@@ -9,13 +9,15 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.moteurDeJeu.game.Map.MapLoader;
+import com.moteurDeJeu.game.MapManager.MapLoader.CollisionManager;
+import com.moteurDeJeu.game.MapManager.MapLoader.MapLoader;
 import com.moteurDeJeu.game.entity.*;
 
 public class GameScreen implements Screen {
 	private MyGame game;
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
+	private CollisionManager collisionmanager;
 	private int speed = 5;
 	
 	private MapLoader mapLoader;
@@ -39,6 +41,7 @@ public class GameScreen implements Screen {
 		camera.update();
 		mapLoader = new MapLoader("maps/main.tmx");
 		mapRenderer = new OrthogonalTiledMapRenderer(mapLoader.getMap());
+		collisionmanager = new CollisionManager(mapLoader.getMap(), "collision");
 		mapLoader.loadEntities();
 		enemies = mapLoader.getEnemies();
 		players = mapLoader.getPlayers();
@@ -53,10 +56,28 @@ public class GameScreen implements Screen {
 		 */
 		
 	    for (Player player : players) {
+	    	
+	    	float nextX = player.getX();
+	    	float nextY = player.getY();
+	    	
+	        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))  nextX -= speed;
+	        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) nextX += speed;
+	        if (Gdx.input.isKeyPressed(Input.Keys.UP))    nextY += speed;
+	        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))  nextY -= speed;
+
+	        // ask collision manager BEFORE moving
+	        if (!collisionmanager.collides(player.getBounds(nextX, nextY))) {
+	            player.setPosition(nextX, nextY);
+	        }
+	    	
+	    	/*
 	        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))  player.move(-speed, 0);
 	        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) player.move(speed, 0);
 	        if (Gdx.input.isKeyPressed(Input.Keys.UP))    player.move(0, speed);
 	        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))  player.move(0, -speed);
+	        
+	        */
+	    	
 	    }
 		
 		camera.update();

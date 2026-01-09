@@ -2,6 +2,7 @@ package com.moteurDeJeu.game.entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 
 
 public abstract class Entity {
@@ -43,6 +44,8 @@ public abstract class Entity {
 	}
 	
 	public abstract void move(int dx, int dy);
+	public abstract void setPosition(float x, float y);
+	public abstract Rectangle getBounds(float nextX,float nextY);
 	
 	public void render(SpriteBatch batch) {
 

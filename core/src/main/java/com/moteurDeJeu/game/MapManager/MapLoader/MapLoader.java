@@ -1,4 +1,4 @@
-package com.moteurDeJeu.game.Map;
+package com.moteurDeJeu.game.MapManager.MapLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -88,7 +88,7 @@ public class MapLoader {
 
 	        
 	        if("player".equals(type)) {
-	        	Player player = new Player(60,60,region);
+	        	Player player = new Player(y,y,region);
 	        	players.add(player);
                 System.out.println("Player spawned at X: " + x + " Y: " + y);
 
