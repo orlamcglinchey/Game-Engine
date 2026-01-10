@@ -1,4 +1,4 @@
-package com.moteurDeJeu.game.entity;
+package com.moteurDeJeu.game.Model.entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -28,12 +28,7 @@ public class Enemy extends Entity{
 	}
 	@Override 
 	public Rectangle getBounds(float nextX, float nextY) {
-        return new Rectangle(
-                nextX,
-                nextY,
-                region.getRegionWidth(),
-                region.getRegionHeight()
-        );
+        return new Rectangle(nextX,nextY, region.getRegionWidth(),region.getRegionHeight());
 	}
 	// to be changed
 	@Override

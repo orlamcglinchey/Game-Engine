@@ -1,5 +1,6 @@
-package com.moteurDeJeu.game.MapManager.MapLoader;
+package com.moteurDeJeu.game.Model.MapManager.MapLoader;
 import com.badlogic.gdx.Gdx;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
@@ -15,14 +16,16 @@ import com.badlogic.gdx.math.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.moteurDeJeu.game.entity.*;
-import com.moteurDeJeu.game.entity.*;
 
+import com.moteurDeJeu.game.Model.entity.Enemy;
+import com.moteurDeJeu.game.Model.entity.Exit;
+import com.moteurDeJeu.game.Model.entity.Player;
 
 public class MapLoader {
 	private TiledMap map;
     private List<Enemy> enemies = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
+    private List<Exit> exits = new ArrayList<>();
 
 	
 	
@@ -35,6 +38,15 @@ public class MapLoader {
 		
 	}
 	
+	public int getMapPixelWidth() {
+	    return getWidth() * getTileWidth();
+	}
+
+	public int getMapPixelHeight() {
+	    return getHeight() * getTileHeight();
+	}
+
+	
 	public int getWidth() {
 		MapProperties p = map.getProperties();
 		return p.get("width",Integer.class);
@@ -46,7 +58,18 @@ public class MapLoader {
 		return p.get("height",Integer.class);
 	}
 	
-	
+ 	//get tilewidth/height for camera
+ 	public Integer getTileWidth() {
+		MapProperties p = map.getProperties();
+ 		return p.get("tilewidth",Integer.class);
+ 	}
+ 	
+ 	public Integer getTileHeight() {
+		MapProperties p = map.getProperties();
+ 		return p.get("tileheight",Integer.class);
+ 	}
+ 	
+ 	
 	public void loadEntities() {
 		MapLayer entitylayer = map.getLayers().get("entities");
 			
@@ -73,6 +96,9 @@ public class MapLoader {
 	    	
 	     	String type = object.getProperties().get("type", String.class);
 
+
+	     	
+	     	
 	    	if (type == null && object instanceof TiledMapTileMapObject) {
 	    	    type = ((TiledMapTileMapObject) object)
 	    	            .getTile()
@@ -88,17 +114,22 @@ public class MapLoader {
 
 	        
 	        if("player".equals(type)) {
-	        	Player player = new Player(y,y,region);
+	        	Player player = new Player(x,y,region);
 	        	players.add(player);
                 System.out.println("Player spawned at X: " + x + " Y: " + y);
 
 	        }
-	        else {
+	        else if("enemy".equals(type)){
 	        	Enemy enemy = new Enemy(x,y,region);
 		        enemies.add(enemy);
                 System.out.println("Enemy spawned at X: " + x + " Y: " + y);
 	        }
-	        
+	        else {
+	        	Exit exit = new Exit(100,100,region);
+	        	exits.add(exit);
+
+	        }
+	        //debug 
 	        System.out.println("Name: "+ tileObject.getName()+" Class: "+type +" at X: " + tileObject.getX() +" Y: "+ tileObject.getY());
 			
 		}
@@ -111,5 +142,8 @@ public class MapLoader {
     }
     public List<Player> getPlayers(){
     	return players;
+    }
+    public List<Exit> getExits(){
+    	return exits;
     }
 }

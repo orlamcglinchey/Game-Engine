@@ -1,4 +1,4 @@
-package com.moteurDeJeu.game.MapManager.MapLoader;
+package com.moteurDeJeu.game.Model.MapManager.MapLoader;
 
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;

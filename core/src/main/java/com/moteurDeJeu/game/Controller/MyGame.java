@@ -1,4 +1,4 @@
-package com.moteurDeJeu.game;
+package com.moteurDeJeu.game.Controller;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;

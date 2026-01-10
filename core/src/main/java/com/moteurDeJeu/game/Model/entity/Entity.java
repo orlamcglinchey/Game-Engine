@@ -1,4 +1,4 @@
-package com.moteurDeJeu.game.entity;
+package com.moteurDeJeu.game.Model.entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -47,10 +47,7 @@ public abstract class Entity {
 	public abstract void setPosition(float x, float y);
 	public abstract Rectangle getBounds(float nextX,float nextY);
 	
-	public void render(SpriteBatch batch) {
-
-		
-	}
+	public abstract void render(SpriteBatch batch);
 
 	
 	
