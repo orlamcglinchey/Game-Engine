@@ -82,8 +82,7 @@ public class MapLoader {
 	        }
 
 	        TiledMapTileMapObject tileObject = (TiledMapTileMapObject) object;
-	        TextureRegion region =
-	                tileObject.getTile().getTextureRegion();
+	        TextureRegion region = tileObject.getTile().getTextureRegion();
 	        if(region == null) {
 	        	System.out.println("Skipping object with null texture: "+ object.getName());
 	        	continue;
@@ -95,8 +94,6 @@ public class MapLoader {
 	    	MapProperties props = object.getProperties();
 	    	
 	     	String type = object.getProperties().get("type", String.class);
-
-
 	     	
 	     	
 	    	if (type == null && object instanceof TiledMapTileMapObject) {
@@ -110,13 +107,18 @@ public class MapLoader {
 	    	 * Get x and y coordinates
 	    	 */
 	        float x = tileObject.getX();
-	        float y = tileObject.getY()- region.getRegionHeight();
+	        float y = tileObject.getY()- region.getRegionHeight(); //fix tiled coordinates 
 
 	        
 	        if("player".equals(type)) {
 	        	Player player = new Player(x,y,region);
+	        	
+	        	//read health if exists 
+	        	Integer health = props.get("health",Integer.class);
+	        	if(health!=null) player.setHealth(health);
+	        	
 	        	players.add(player);
-                System.out.println("Player spawned at X: " + x + " Y: " + y);
+                System.out.println("Player spawned at X: " + x + " Y: " + y+" health: "+ health);
 
 	        }
 	        else if("enemy".equals(type)){

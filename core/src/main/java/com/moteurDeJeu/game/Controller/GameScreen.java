@@ -16,6 +16,7 @@ import com.moteurDeJeu.game.Model.entity.Enemy;
 import com.moteurDeJeu.game.Model.entity.Exit;
 import com.moteurDeJeu.game.Model.entity.Player;
 import com.moteurDeJeu.game.View.CameraController;
+import com.moteurDeJeu.game.View.GameUI;
 
 public class GameScreen implements Screen {
 	private MyGame game;
@@ -24,10 +25,10 @@ public class GameScreen implements Screen {
 	
 	private MapLoader mapLoader;
 	private OrthogonalTiledMapRenderer mapRenderer; 
-//	private int mapWidth;
-	//private int mapHeight;
 	private CameraController camera;
 	private GameController gameController;
+	private GameUI levelText;
+	private EnemyController enemyController;
 	
 	private List<Enemy> enemies;
 	private List<Player> players;
@@ -50,6 +51,8 @@ public class GameScreen implements Screen {
 		mapRenderer = new OrthogonalTiledMapRenderer(mapLoader.getMap());
 		collisionmanager = new CollisionManager(mapLoader.getMap(), "collision");
 		gameController = new GameController(collisionmanager);
+		levelText = new GameUI();
+		enemyController = new EnemyController(collisionmanager);
 		mapLoader.loadEntities();
 		enemies = mapLoader.getEnemies();
 		players = mapLoader.getPlayers();
@@ -60,43 +63,25 @@ public class GameScreen implements Screen {
 	public void render(float delta) {
 		ScreenUtils.clear(0,0,0,1);
 		
-		gameController.updatePlayers(players, exits);
-
+		//update game logic
+		gameController.updatePlayers(players, exits,enemies,delta);
 		
-		/**
-		 * player input and update positions
-		 */
-		/*
-	    for (Player player : players) {
-	    	for(Exit exit:exits) {
-	    		
-	    		
-	    	float nextX = player.getX();
-	    	float nextY = player.getY();
-	    	
-	        if (Gdx.input.isKeyPressed(Input.Keys.LEFT))  nextX -= speed;
-	        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) nextX += speed;
-	        if (Gdx.input.isKeyPressed(Input.Keys.UP))    nextY += speed;
-	        if (Gdx.input.isKeyPressed(Input.Keys.DOWN))  nextY -= speed;
-
-	        // ask collision manager BEFORE moving
-	        if (!collisionmanager.collides(player.getBounds(nextX, nextY))) {
-	            player.setPosition(nextX, nextY);
-	        }	    	
-	        //ask if player has hit exit
-	        if(player.getBounds(nextX, nextY).overlaps(exit.getBounds(exit.getX(),exit.getY()))) {
-	        	//player reached exit 
-	        	System.out.println("player has reached exit");
-	        }
-	    	}
-
-	    }*/
-		
-		//camera.update();
-		//batch.setProjectionMatrix(camera.combined);
-		
+		//update enemy logic
+		enemyController.update(enemies,delta);
+		//render maps
 		mapRenderer.setView(camera.getCamera());
 		mapRenderer.render();
+		
+		//render camera
+		batch.setProjectionMatrix(camera.getCamera().combined);
+		batch.begin();
+		
+		//if exit reached --> level complete
+		if(gameController.getLevelComplete()) {
+			levelText.render(batch);
+		}
+		batch.end();
+
 		
 		batch.begin();
 		//draw things

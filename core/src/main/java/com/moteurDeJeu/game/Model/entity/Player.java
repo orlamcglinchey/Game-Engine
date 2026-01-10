@@ -7,8 +7,35 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Player extends Entity{
+	private int health = 3;
+	private float cooldown = 1f;
+	private float timer = 0f;
+	
 	public Player(float x,float y,TextureRegion region) {
 		super(x,y,region);
+	}
+	
+	
+	public int getHealth() {
+		return health;
+	}
+	public void setHealth(int health) {
+		this.health=health;
+	}
+	
+	public void updateCooldown(float delta) {
+		if(timer<cooldown) {
+			timer+=delta;
+		}
+	}
+	public void takeDamage(int amount) {
+		if(timer>=cooldown) {
+			health-=amount;
+			timer = 0; //reset timer
+			System.out.println("player health: "+ health);			
+		}
+
+		
 	}
 	
 	@Override

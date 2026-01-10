@@ -12,14 +12,18 @@ public class GameController {
     
     private CollisionManager collisionManager;
     private int speed = 2;
+    private boolean levelComplete;
 
     public GameController(CollisionManager collisionManager) {
     	this.collisionManager=collisionManager;
     }
     
     
-    public void updatePlayers(List<Player> players, List<Exit> exits) {
+    public void updatePlayers(List<Player> players, List<Exit> exits,List<Enemy> enemies, float delta) {
         for (Player player : players) {
+        	
+        	//update damage cooldown period
+        	player.updateCooldown(delta);
 
             float nextX = player.getX();
             float nextY = player.getY();
@@ -39,9 +43,19 @@ public class GameController {
             for (Exit exit : exits) {
                 if (player.getBounds(nextX, nextY)
                         .overlaps(exit.getBounds(exit.getX(), exit.getY()))) {
+                	levelComplete = true;
                     System.out.println("player has reached exit");
                 }
             }
+            
+            for(Enemy enemy: enemies) {
+            	if(player.getBounds(player.getX(),player.getY()).overlaps(enemy.getBounds(enemy.getX(),enemy.getY()))){
+            		player.takeDamage(1);
+            	}
+            }
         }
+    }
+    public boolean getLevelComplete() {
+    	return levelComplete;
     }
 }
