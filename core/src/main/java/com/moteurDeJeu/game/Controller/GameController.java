@@ -1,26 +1,36 @@
 package com.moteurDeJeu.game.Controller;
 import java.util.List;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.moteurDeJeu.game.Model.MapManager.MapLoader.CollisionManager;
 import com.moteurDeJeu.game.Model.entity.*;
 
-// New class instead of being in GameScreen
 
 public class GameController {
     
     private CollisionManager collisionManager;
     private int speed = 2;
     private boolean levelComplete;
-
+    private Gamestate gameState=Gamestate.RUNNING;
+    
     public GameController(CollisionManager collisionManager) {
     	this.collisionManager=collisionManager;
     }
     
+    //handle winning/losing
+    public enum Gamestate{
+    	RUNNING,
+    	WON,
+    	LOST
+    }
+    public Gamestate getGamestate() {
+    	return gameState;
+    }
     
     public void updatePlayers(List<Player> players, List<Exit> exits,List<Enemy> enemies, List<PowerUp> powerUps, float delta) {
-        for (Player player : players) {
+       if(gameState != Gamestate.RUNNING) return;
+    	
+    	for (Player player : players) {
         	
         	//update damage cooldown period
         	player.updateCooldown(delta);
@@ -34,6 +44,10 @@ public class GameController {
             if (Gdx.input.isKeyPressed(Input.Keys.UP))    nextY += speed;
             if (Gdx.input.isKeyPressed(Input.Keys.DOWN))  nextY -= speed;
 
+            //health is zero ---> LOST
+            if(player.getHealth()<=0) {
+            	gameState = Gamestate.LOST;
+            }
             // Collision with map
             if (!collisionManager.collides(player.getBounds(nextX, nextY))) {
                 player.setPosition(nextX, nextY);
@@ -41,8 +55,8 @@ public class GameController {
 
             // Collision with exits
             for (Exit exit : exits) {
-                if (player.getBounds(nextX, nextY)
-                        .overlaps(exit.getBounds(exit.getX(), exit.getY()))) {
+                if (player.getBounds(nextX, nextY).overlaps(exit.getBounds(exit.getX(), exit.getY()))) {
+                	gameState = Gamestate.WON;
                 	levelComplete = true;
                     System.out.println("player has reached exit");
                 }

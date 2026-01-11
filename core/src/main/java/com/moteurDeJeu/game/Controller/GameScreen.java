@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.moteurDeJeu.game.Controller.GameController.Gamestate;
 import com.moteurDeJeu.game.Model.MapManager.MapLoader.CollisionManager;
 import com.moteurDeJeu.game.Model.MapManager.MapLoader.MapLoader;
 import com.moteurDeJeu.game.Model.config.ConfigManager;
@@ -33,6 +34,8 @@ public class GameScreen implements Screen {
 	private GameUI levelText;
 	private GameUI ui;
 	private EnemyController enemyController;
+	private float endTimer = 0f;	//reset timer
+	private final float resetDelay = 2.5f;
 	
 	private ConfigManager config;
 	
@@ -74,25 +77,34 @@ public class GameScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		ScreenUtils.clear(0,0,0,1);
+		Gamestate state = gameController.getGamestate();
 		
-		//update game logic
-		gameController.updatePlayers(players, exits,enemies,powerUps,delta);
+		if(state == Gamestate.RUNNING) {
+			//update game logic
+			gameController.updatePlayers(players, exits,enemies,powerUps,delta);
+			
+			//update enemy logic
+			enemyController.update(enemies,delta);			
+		}
+		else {
+			endTimer+=delta;
+		}
 		
-		//update enemy logic
-		enemyController.update(enemies,delta);
+
 		//render maps
 		mapRenderer.setView(camera.getCamera());
 		mapRenderer.render();
 		
 		//render camera
 		batch.setProjectionMatrix(camera.getCamera().combined);
-		batch.begin();
+	
+		/*batch.begin();
 		
 		//if exit reached --> level complete
 		if(gameController.getLevelComplete()) {
 			levelText.render(batch);
 		}
-		batch.end();
+		batch.end();*/
 
 		
 		batch.begin();
@@ -113,10 +125,24 @@ public class GameScreen implements Screen {
 		if(!players.isEmpty()) {
 			ui.renderHearts(batch, players.get(0));
 		}
+		//game won
+		if(state == Gamestate.WON) {
+			levelText.renderWin(batch);
+		}
+		//game lost
+		if(state == Gamestate.LOST) {
+			levelText.renderLose(batch);
+		}
 		
 		batch.end();
 		
-		
+		//reset game 
+		if(state != Gamestate.RUNNING) {
+			endTimer +=delta;
+			if(endTimer >=resetDelay) {
+				game.setScreen(new GameScreen(game));
+			}
+		}
 		
 	}
 	

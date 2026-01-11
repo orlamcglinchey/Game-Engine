@@ -16,8 +16,12 @@ public class GameUI {
         this.heart=assets.getHeart();        
     }
 
-    public void render(SpriteBatch batch) {
+    public void renderWin(SpriteBatch batch) {
     		font.draw(batch, "LEVEL COMPLETE", 250, 400);
+    }
+    public void renderLose(SpriteBatch batch) {
+		font.draw(batch, "YOU LOST", 250, 400);
+
     }
     
     public void renderHearts(SpriteBatch batch, Player player) {
