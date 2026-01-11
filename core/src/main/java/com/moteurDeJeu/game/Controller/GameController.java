@@ -19,7 +19,7 @@ public class GameController {
     }
     
     
-    public void updatePlayers(List<Player> players, List<Exit> exits,List<Enemy> enemies, float delta) {
+    public void updatePlayers(List<Player> players, List<Exit> exits,List<Enemy> enemies, List<PowerUp> powerUps, float delta) {
         for (Player player : players) {
         	
         	//update damage cooldown period
@@ -47,11 +47,21 @@ public class GameController {
                     System.out.println("player has reached exit");
                 }
             }
-            
+            // collision with enemies
             for(Enemy enemy: enemies) {
             	if(player.getBounds(player.getX(),player.getY()).overlaps(enemy.getBounds(enemy.getX(),enemy.getY()))){
             		player.takeDamage(1);
             	}
+            }
+            
+            //collision with powerups
+            for(PowerUp pu : powerUps) {
+            	if(!pu.isCollected()&& player.getBounds(nextX, nextY).overlaps(pu.getBounds(pu.getX(), pu.getY()))) {
+                	pu.collect();
+                	player.increaseHealth(1);
+                	System.out.println("Powerup collected: "+ player.getHealth());
+            	}
+            	
             }
         }
     }

@@ -15,8 +15,10 @@ import com.moteurDeJeu.game.Model.MapManager.MapLoader.MapLoader;
 import com.moteurDeJeu.game.Model.entity.Enemy;
 import com.moteurDeJeu.game.Model.entity.Exit;
 import com.moteurDeJeu.game.Model.entity.Player;
+import com.moteurDeJeu.game.Model.entity.PowerUp;
 import com.moteurDeJeu.game.View.CameraController;
 import com.moteurDeJeu.game.View.GameUI;
+import com.moteurDeJeu.game.View.UIAssets;
 
 public class GameScreen implements Screen {
 	private MyGame game;
@@ -28,11 +30,13 @@ public class GameScreen implements Screen {
 	private CameraController camera;
 	private GameController gameController;
 	private GameUI levelText;
+	private GameUI ui;
 	private EnemyController enemyController;
-	
+
 	private List<Enemy> enemies;
 	private List<Player> players;
 	private List<Exit> exits;
+	private List<PowerUp> powerUps;
 
 	
 	public GameScreen(MyGame game) {
@@ -44,19 +48,22 @@ public class GameScreen implements Screen {
 	public void show() {
 
 		mapLoader = new MapLoader("maps/main.tmx");
-		
+		mapLoader.loadEntities();
+
 		camera = new CameraController(800,480);
 		camera.fitMap(mapLoader.getMapPixelWidth(),mapLoader.getMapPixelHeight());
 
 		mapRenderer = new OrthogonalTiledMapRenderer(mapLoader.getMap());
 		collisionmanager = new CollisionManager(mapLoader.getMap(), "collision");
 		gameController = new GameController(collisionmanager);
-		levelText = new GameUI();
+		UIAssets uiAssets = new UIAssets(mapLoader.getMap());
+		ui = new GameUI(uiAssets);
+		levelText = new GameUI(uiAssets); //doesn't feel great
 		enemyController = new EnemyController(collisionmanager);
-		mapLoader.loadEntities();
 		enemies = mapLoader.getEnemies();
 		players = mapLoader.getPlayers();
 		exits = mapLoader.getExits();
+		powerUps = mapLoader.getPowerUps();
 	}
 	
 	@Override
@@ -64,7 +71,7 @@ public class GameScreen implements Screen {
 		ScreenUtils.clear(0,0,0,1);
 		
 		//update game logic
-		gameController.updatePlayers(players, exits,enemies,delta);
+		gameController.updatePlayers(players, exits,enemies,powerUps,delta);
 		
 		//update enemy logic
 		enemyController.update(enemies,delta);
@@ -95,6 +102,13 @@ public class GameScreen implements Screen {
 		for(Exit exit: exits) {
 			exit.render(batch);
 		}
+		for(PowerUp pu: powerUps) {
+			pu.render(batch);
+		}
+		if(!players.isEmpty()) {
+			ui.renderHearts(batch, players.get(0));
+		}
+		
 		batch.end();
 		
 		

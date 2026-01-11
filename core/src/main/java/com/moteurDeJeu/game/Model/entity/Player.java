@@ -23,6 +23,10 @@ public class Player extends Entity{
 		this.health=health;
 	}
 	
+	public void increaseHealth(int increase) {
+		health+=increase;
+	}
+	
 	public void updateCooldown(float delta) {
 		if(timer<cooldown) {
 			timer+=delta;
@@ -33,9 +37,7 @@ public class Player extends Entity{
 			health-=amount;
 			timer = 0; //reset timer
 			System.out.println("player health: "+ health);			
-		}
-
-		
+		}	
 	}
 	
 	@Override

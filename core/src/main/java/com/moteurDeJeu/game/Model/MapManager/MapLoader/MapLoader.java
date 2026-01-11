@@ -20,12 +20,14 @@ import java.util.List;
 import com.moteurDeJeu.game.Model.entity.Enemy;
 import com.moteurDeJeu.game.Model.entity.Exit;
 import com.moteurDeJeu.game.Model.entity.Player;
+import com.moteurDeJeu.game.Model.entity.PowerUp;
 
 public class MapLoader {
 	private TiledMap map;
     private List<Enemy> enemies = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
     private List<Exit> exits = new ArrayList<>();
+    private List<PowerUp> powerUps = new ArrayList<>();
 
 	
 	
@@ -107,7 +109,7 @@ public class MapLoader {
 	    	 * Get x and y coordinates
 	    	 */
 	        float x = tileObject.getX();
-	        float y = tileObject.getY()- region.getRegionHeight(); //fix tiled coordinates 
+	        float y = tileObject.getY();//- region.getRegionHeight(); //fix tiled coordinates 
 
 	        
 	        if("player".equals(type)) {
@@ -118,18 +120,21 @@ public class MapLoader {
 	        	if(health!=null) player.setHealth(health);
 	        	
 	        	players.add(player);
-                System.out.println("Player spawned at X: " + x + " Y: " + y+" health: "+ health);
+            //    System.out.println("Player spawned at X: " + x + " Y: " + y+" health: "+ health);
 
 	        }
 	        else if("enemy".equals(type)){
 	        	Enemy enemy = new Enemy(x,y,region);
 		        enemies.add(enemy);
-                System.out.println("Enemy spawned at X: " + x + " Y: " + y);
+            //    System.out.println("Enemy spawned at X: " + x + " Y: " + y);
 	        }
-	        else {
-	        	Exit exit = new Exit(100,100,region);
+	        else if("exit".equals(type)){
+	        	Exit exit = new Exit(x,y,region);
 	        	exits.add(exit);
-
+	        }
+	        else if("powerUp".equals(type)) {
+	        	PowerUp powerUp = new PowerUp(x,y,region);
+	        	powerUps.add(powerUp);
 	        }
 	        //debug 
 	        System.out.println("Name: "+ tileObject.getName()+" Class: "+type +" at X: " + tileObject.getX() +" Y: "+ tileObject.getY());
@@ -147,5 +152,8 @@ public class MapLoader {
     }
     public List<Exit> getExits(){
     	return exits;
+    }
+    public List<PowerUp> getPowerUps(){
+    	return powerUps;
     }
 }
