@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.moteurDeJeu.game.Model.MapManager.MapLoader.CollisionManager;
 import com.moteurDeJeu.game.Model.MapManager.MapLoader.MapLoader;
+import com.moteurDeJeu.game.Model.config.ConfigManager;
 import com.moteurDeJeu.game.Model.entity.Enemy;
 import com.moteurDeJeu.game.Model.entity.Exit;
 import com.moteurDeJeu.game.Model.entity.Player;
@@ -32,7 +33,9 @@ public class GameScreen implements Screen {
 	private GameUI levelText;
 	private GameUI ui;
 	private EnemyController enemyController;
-
+	
+	private ConfigManager config;
+	
 	private List<Enemy> enemies;
 	private List<Player> players;
 	private List<Exit> exits;
@@ -49,6 +52,8 @@ public class GameScreen implements Screen {
 
 		mapLoader = new MapLoader("maps/main.tmx");
 		mapLoader.loadEntities();
+		
+		ConfigManager config = new ConfigManager("config/game.json");
 
 		camera = new CameraController(800,480);
 		camera.fitMap(mapLoader.getMapPixelWidth(),mapLoader.getMapPixelHeight());
