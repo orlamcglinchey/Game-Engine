@@ -10,7 +10,14 @@ public class Player extends Entity{
 	private int health = 3;
 	private float cooldown = 1f;
 	private float timer = 0f;
-	
+	/**
+	 * Represents player entity
+	 * Player is controlled by input and has health 
+	 * Texture and other properties are provided by Tiled map
+	 * @param x
+	 * @param y
+	 * @param region
+	 */
 	public Player(float x,float y,TextureRegion region) {
 		super(x,y,region);
 	}

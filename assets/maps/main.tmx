@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="89">
+ <tileset firstgid="1" source="tileset.tsx"/>
+ <tileset firstgid="21" source="../entities/enemies.tsx"/>
+ <tileset firstgid="25" source="../entities/exit.tsx"/>
+ <tileset firstgid="26" source="../entities/house.tsx"/>
+ <tileset firstgid="32" source="chest.tsx"/>
+ <tileset firstgid="33" source="cat.tsx"/>
+ <tileset firstgid="34" source="ui.tsx"/>
+ <tileset firstgid="36" source="../entities/entities.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="30" height="20">
+  <data encoding="csv">
+5,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,31,31,17,17,17,17,17,17,17,2,2,2,2,
+5,17,17,17,17,17,17,1,2,2,2,1,2,2,2,1,1,31,31,17,17,17,17,17,17,17,2,2,2,2,
+5,17,5,5,2,2,17,1,2,2,2,1,2,2,2,1,1,0,0,17,17,17,17,17,17,17,17,17,2,2,
+5,17,5,5,2,2,17,1,2,2,2,1,2,2,2,1,1,0,0,17,17,17,17,17,17,17,17,17,2,2,
+5,17,5,5,2,2,17,1,2,2,2,1,2,2,2,1,1,0,0,17,17,1,1,1,1,1,1,17,2,2,
+5,17,5,5,2,2,17,1,2,2,2,1,2,2,2,1,1,0,0,1,2,2,2,2,2,2,1,1,2,2,
+5,17,9,9,17,17,17,1,2,2,2,1,2,2,2,1,1,0,0,1,2,2,2,2,2,2,2,1,2,2,
+5,17,9,9,17,9,9,1,2,2,2,1,2,2,2,1,1,0,0,1,2,2,2,2,2,2,2,1,1,2,
+5,17,9,9,17,9,9,1,2,2,2,1,2,2,2,1,1,0,0,1,1,2,2,1,1,1,1,1,1,1,
+5,17,9,9,17,9,9,1,2,2,2,1,2,2,2,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,
+5,17,9,9,17,9,9,1,2,2,2,1,2,2,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+5,17,17,17,17,9,9,1,2,2,2,1,2,2,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+9,9,9,9,9,9,9,1,1,1,1,1,2,2,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,0,0,10,10,10,10,10,10,10,10,10,10,10,
+9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,0,0,10,10,10,10,10,10,10,10,10,10,10,
+9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,0,0,10,10,10,10,10,10,10,10,10,10,10,
+17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,0,0,2,2,2,2,2,2,2,2,2,2,2,
+17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,0,0,2,2,2,2,2,2,2,2,2,2,2,
+17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,0,0,17,17,17,17,17,17,17,17,17,17,17,
+17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,0,0,17,17,17,17,17,17,17,17,17,17,17
+</data>
+ </layer>
+ <objectgroup id="2" name="entities" class="enemy">
+  <object id="2" name="tree2" type="enemy" gid="22" x="120.469" y="255.899" width="41" height="63"/>
+  <object id="3" name="tree1" type="enemy" gid="22" x="88.1187" y="345.289" width="41" height="63"/>
+  <object id="6" name="player" gid="21" x="35.3333" y="220.667" width="32" height="32"/>
+  <object id="7" gid="22" x="135.333" y="351.333" width="41" height="63"/>
+  <object id="29" gid="32" x="300" y="302.667" width="31" height="18.6667"/>
+  <object id="33" gid="22" x="380" y="502" width="41" height="63"/>
+  <object id="34" gid="22" x="702" y="122" width="41" height="63"/>
+  <object id="35" gid="22" x="744" y="482" width="41" height="63"/>
+  <object id="36" gid="22" x="144" y="550" width="41" height="63"/>
+  <object id="37" gid="22" x="358" y="160" width="41" height="63"/>
+  <object id="38" gid="22" x="462" y="308" width="41" height="63"/>
+  <object id="39" gid="22" x="122" y="98" width="41" height="63"/>
+  <object id="40" gid="22" x="750" y="588" width="41" height="63"/>
+  <object id="41" type="powerUp" gid="33" x="100" y="104" width="32" height="32"/>
+  <object id="44" gid="9" x="573.333" y="513.333" width="32" height="32"/>
+  <object id="49" gid="9" x="542.667" y="509.333" width="32" height="32"/>
+  <object id="50" gid="9" x="573.333" y="478.667" width="32" height="32"/>
+  <object id="51" gid="9" x="540" y="477.333" width="32" height="32"/>
+  <object id="52" gid="9" x="542.667" y="445.333" width="32" height="32"/>
+  <object id="53" gid="9" x="573.333" y="444" width="32" height="32"/>
+  <object id="54" gid="9" x="540" y="378.667" width="32" height="32"/>
+  <object id="55" gid="9" x="572" y="380" width="32" height="32"/>
+  <object id="56" gid="9" x="577.333" y="416" width="32" height="32"/>
+  <object id="57" gid="9" x="542.667" y="414.667" width="32" height="32"/>
+  <object id="58" gid="9" x="542.667" y="349.333" width="32" height="32"/>
+  <object id="59" gid="9" x="576" y="349.333" width="32" height="32"/>
+  <object id="60" gid="9" x="542.667" y="314.667" width="32" height="32"/>
+  <object id="61" gid="9" x="576" y="318.667" width="32" height="32"/>
+  <object id="62" gid="9" x="574.667" y="284" width="32" height="32"/>
+  <object id="63" gid="9" x="542.667" y="286.667" width="32" height="32"/>
+  <object id="64" gid="9" x="545.333" y="250.667" width="32" height="32"/>
+  <object id="65" gid="9" x="574.667" y="252" width="32" height="32"/>
+  <object id="66" gid="9" x="574.667" y="222.667" width="32" height="32"/>
+  <object id="67" gid="9" x="541.333" y="224" width="32" height="32"/>
+  <object id="68" gid="9" x="542.667" y="190.667" width="32" height="32"/>
+  <object id="69" gid="9" x="577.333" y="192" width="32" height="32"/>
+  <object id="70" gid="9" x="576" y="161.333" width="32" height="32"/>
+  <object id="71" gid="9" x="544" y="158.667" width="32" height="32"/>
+  <object id="72" gid="9" x="545.333" y="125.333" width="32" height="32"/>
+  <object id="73" gid="9" x="545.333" y="94.6667" width="32" height="32"/>
+  <object id="74" gid="9" x="580" y="94.6667" width="32" height="32"/>
+  <object id="75" gid="9" x="576" y="125.333" width="32" height="32"/>
+  <object id="76" gid="9" x="546.667" y="540" width="32" height="32"/>
+  <object id="78" gid="9" x="572" y="546.667" width="32" height="32"/>
+  <object id="79" gid="9" x="545.333" y="574.667" width="32" height="32"/>
+  <object id="80" gid="9" x="574.667" y="573.333" width="32" height="32"/>
+  <object id="81" gid="9" x="542.667" y="609.333" width="32" height="32"/>
+  <object id="82" gid="9" x="576" y="609.333" width="32" height="32"/>
+  <object id="83" gid="9" x="576" y="637.333" width="32" height="32"/>
+  <object id="84" gid="9" x="546.667" y="634.667" width="32" height="32"/>
+  <object id="85" gid="35" x="874.667" y="636" width="41" height="63"/>
+  <object id="86" gid="35" x="561.333" y="86.6667" width="41" height="63"/>
+  <object id="87" type="exit" gid="37" x="806.667" y="119.333" width="48" height="52"/>
+  <object id="88" type="powerUp" gid="38" x="650.667" y="65.3333" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="3" name="collision">
+  <object id="9" x="2.66667" y="636" width="608" height="116"/>
+  <object id="26" x="616" y="641.333" width="394.667" height="54.6667"/>
+  <object id="27" x="-45.3333" y="-28" width="45.3333" height="673.333"/>
+  <object id="30" x="-40" y="-40" width="1020" height="38.6667"/>
+  <object id="32" x="962.667" y="-17.3333" width="41.3333" height="678.667"/>
+ </objectgroup>
+</map>

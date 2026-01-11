@@ -2,7 +2,7 @@ package com.moteurDeJeu.game.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.moteurDeJeu.game.MyGame;
+import com.moteurDeJeu.game.Controller.MyGame;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {

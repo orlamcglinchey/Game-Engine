@@ -22,6 +22,11 @@ import com.moteurDeJeu.game.View.CameraController;
 import com.moteurDeJeu.game.View.GameUI;
 import com.moteurDeJeu.game.View.UIAssets;
 
+/**
+ * Main gameplay screen
+ * Coordinates controllers,UI and entity rendering
+ * Handles game update loop, rendering map and entities, game state transitions (running,win,lose)
+ */
 public class GameScreen implements Screen {
 	private MyGame game;
 	private SpriteBatch batch;
@@ -49,6 +54,9 @@ public class GameScreen implements Screen {
 		this.game = game;
 		batch = new SpriteBatch();
 	}
+	/**
+	 * initialises map,entities,camera,controllers and UI
+	 */
 	
 	@Override
 	public void show() {
@@ -73,7 +81,9 @@ public class GameScreen implements Screen {
 		exits = mapLoader.getExits();
 		powerUps = mapLoader.getPowerUps();
 	}
-	
+	/*
+	 * main render loop
+	 */
 	@Override
 	public void render(float delta) {
 		ScreenUtils.clear(0,0,0,1);

@@ -5,6 +5,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.moteurDeJeu.game.Model.entity.Player;
 
+/**
+ * Handles all in-game UI rendering 
+ * Includes health display and win/loss messages 
+ */
 public class GameUI {
     private BitmapFont font;
     private TextureRegion heart;

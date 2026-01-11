@@ -1,0 +1,112 @@
+{
+    "activeFile": "maps/main.tmx",
+    "expandedProjectPaths": [
+        "maps",
+        ".",
+        "entities"
+    ],
+    "fileStates": {
+        "entities/enemies.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "entities/entities.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "entities/exit.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "entities/heart.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "entities/house.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
+        "entities/objects.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "maps/cat.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "maps/chest.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "maps/house.tsx": {
+            "dynamicWrapping": true
+        },
+        "maps/life.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "maps/main.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 473.3333333333333,
+                "y": 507.33333333333337
+            }
+        },
+        "maps/tileset.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
+        "maps/ui.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.externalTilesetPath": "C:/Moteur_de_jeu/assets/entities",
+    "last.imagePath": "C:/Moteur_de_jeu/assets/entities",
+    "openFiles": [
+        "maps/main.tmx",
+        "maps/tileset.tsx",
+        "entities/enemies.tsx",
+        "entities/exit.tsx",
+        "maps/chest.tsx",
+        "maps/cat.tsx",
+        "entities/entities.tsx",
+        "maps/ui.tsx"
+    ],
+    "project": "farmland.tiled-project",
+    "property.type": "int",
+    "recentFiles": [
+        "maps/ui.tsx",
+        "entities/entities.tsx",
+        "maps/cat.tsx",
+        "maps/chest.tsx",
+        "entities/exit.tsx",
+        "entities/enemies.tsx",
+        "maps/tileset.tsx",
+        "maps/main.tmx",
+        "entities/house.tsx",
+        "maps/life.tsx",
+        "entities/heart.tsx",
+        "entities/objects.tsx"
+    ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.type": 1
+}
