@@ -4,6 +4,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * Base class for all game entities
+ * Subclasses include Player, Enemy, Exit and PowerUp
+ */
 
 public abstract class Entity {
 	
@@ -48,9 +52,5 @@ public abstract class Entity {
 	public abstract Rectangle getBounds(float nextX,float nextY);
 	
 	public abstract void render(SpriteBatch batch);
-
-	
-	
-	//ajouter des methodes pour the extended classes
 
 }

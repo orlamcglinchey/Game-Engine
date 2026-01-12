@@ -27,7 +27,11 @@ public class GameUI {
 		font.draw(batch, "YOU LOST", 250, 400);
 
     }
-    
+    /**
+     * Render's the player's health as heart icons 
+     * @param batch
+     * @param player
+     */
     public void renderHearts(SpriteBatch batch, Player player) {
     	int health = player.getHealth();
     	

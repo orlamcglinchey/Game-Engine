@@ -81,8 +81,8 @@ public class GameScreen implements Screen {
 		exits = mapLoader.getExits();
 		powerUps = mapLoader.getPowerUps();
 	}
-	/*
-	 * main render loop
+	/**
+	 * Main render loop
 	 */
 	@Override
 	public void render(float delta) {
@@ -107,14 +107,6 @@ public class GameScreen implements Screen {
 		
 		//render camera
 		batch.setProjectionMatrix(camera.getCamera().combined);
-	
-		/*batch.begin();
-		
-		//if exit reached --> level complete
-		if(gameController.getLevelComplete()) {
-			levelText.render(batch);
-		}
-		batch.end();*/
 
 		
 		batch.begin();
@@ -125,7 +117,6 @@ public class GameScreen implements Screen {
 		for (Player p:players) {
 			p.render(batch);
 		}
-		//change becuase we dont want all level exits drawing at once
 		for(Exit exit: exits) {
 			exit.render(batch);
 		}

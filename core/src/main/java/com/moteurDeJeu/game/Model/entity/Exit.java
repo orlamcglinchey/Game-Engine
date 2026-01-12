@@ -4,12 +4,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * Represents the game exit
+ */
 public class Exit extends Entity{
 	public Exit(float x, float y, TextureRegion region) {
 		super(x,y,region);
 	}
 	
-	// all these methods are pointless for exit
 	@Override
 	public void move(int x, int y) {
 		

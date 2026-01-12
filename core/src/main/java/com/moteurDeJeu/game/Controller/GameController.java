@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.moteurDeJeu.game.Model.MapManager.MapLoader.CollisionManager;
 import com.moteurDeJeu.game.Model.entity.*;
-
+/**
+ * Controls overall game logic and state transitions 
+ */
 
 public class GameController {
     
@@ -17,7 +19,9 @@ public class GameController {
     	this.collisionManager=collisionManager;
     }
     
-    //handle winning/losing
+    /**
+     * represents the current state of the game
+     */
     public enum Gamestate{
     	RUNNING,
     	WON,
@@ -26,7 +30,14 @@ public class GameController {
     public Gamestate getGamestate() {
     	return gameState;
     }
-    
+    /**
+     * Updates player logic and checks interactions with other entities
+     * @param players list of players
+     * @param exits list of exits
+     * @param enemies list of enemies
+     * @param powerUps list of power-ups
+     * @param delta time passed since last frame
+     */
     public void updatePlayers(List<Player> players, List<Exit> exits,List<Enemy> enemies, List<PowerUp> powerUps, float delta) {
        if(gameState != Gamestate.RUNNING) return;
     	

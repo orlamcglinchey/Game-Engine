@@ -5,7 +5,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 /**
- * this class loads in UI Assets 
+ * this class loads in UI Assets in .tsx form
  */
 public class UIAssets {
 	private TextureRegion heart;

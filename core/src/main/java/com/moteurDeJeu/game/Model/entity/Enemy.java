@@ -15,7 +15,12 @@ public class Enemy extends Entity{
 	private float directiontimer=0;
 	private final float directionchangeinterval=2f;
 	
-
+	/**
+	 * Represents Enemy entity
+	 * @param x starting x position in world coordinates
+	 * @param y starting y position in world coordinates
+	 * @param region texture region used for rendering
+	 */
 	public Enemy(float x, float y,TextureRegion region) {
 		super(x,y,region);
 		
@@ -37,7 +42,11 @@ public class Enemy extends Entity{
 		this.dy=dy;
 	}
 	
-	//new stuff
+	/**
+	 * Updates direction automatically and randomlly
+	 * @param delta
+	 * @param random
+	 */
 	public void updateDirection(float delta, Random random) {
 	    directiontimer += delta;
 	    if (directiontimer >= directionchangeinterval) {
@@ -75,15 +84,10 @@ public class Enemy extends Entity{
         return new Rectangle(nextX,nextY, region.getRegionWidth(),region.getRegionHeight());
 	}
 	
-	// to be changed
 	@Override
 	public void move(int dx, int dy) {
 		x+=dx;
 		y+=dy;
 
-	}
-	//@Override
-	public void draw() {
-	
 	}
 }

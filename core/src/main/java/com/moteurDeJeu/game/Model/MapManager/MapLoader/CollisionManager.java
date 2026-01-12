@@ -8,6 +8,9 @@ import com.badlogic.gdx.math.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handles collision detection so long as collision layer exists
+ */
 public class CollisionManager {
 
     private final List<Rectangle> collisionRects = new ArrayList<>();
@@ -23,7 +26,11 @@ public class CollisionManager {
             collisionRects.add(obj.getRectangle());
         }
     }
-
+    /**
+     * Checks if two tiles collide 
+     * @param bounds
+     * @return
+     */
     public boolean collides(Rectangle bounds) {
         for (Rectangle rect : collisionRects) {
             if (bounds.overlaps(rect)) {

@@ -14,9 +14,9 @@ public class Player extends Entity{
 	 * Represents player entity
 	 * Player is controlled by input and has health 
 	 * Texture and other properties are provided by Tiled map
-	 * @param x
-	 * @param y
-	 * @param region
+	 * @param x starting x position in world coordinates
+	 * @param y starting y position in world coordinates
+	 * @param region texture region used to render player
 	 */
 	public Player(float x,float y,TextureRegion region) {
 		super(x,y,region);

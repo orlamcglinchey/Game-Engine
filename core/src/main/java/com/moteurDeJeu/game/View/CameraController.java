@@ -1,7 +1,11 @@
 package com.moteurDeJeu.game.View;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
-
+/**
+ * Controls game camera
+ * 
+ * Ensures whole map is shown 
+ */
 public class CameraController{
 	private OrthographicCamera camera;
 	

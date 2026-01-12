@@ -22,6 +22,12 @@ import com.moteurDeJeu.game.Model.entity.Exit;
 import com.moteurDeJeu.game.Model.entity.Player;
 import com.moteurDeJeu.game.Model.entity.PowerUp;
 
+/**
+ * Loads a .tmx map file from Tiled and extracts game entities from object layer 'entities'
+ * Creates Player,Exit,Enemy and PowerUp objects
+ */
+
+
 public class MapLoader {
 	private TiledMap map;
     private List<Enemy> enemies = new ArrayList<>();
@@ -120,13 +126,11 @@ public class MapLoader {
 	        	if(health!=null) player.setHealth(health);
 	        	
 	        	players.add(player);
-            //    System.out.println("Player spawned at X: " + x + " Y: " + y+" health: "+ health);
 
 	        }
 	        else if("enemy".equals(type)){
 	        	Enemy enemy = new Enemy(x,y,region);
 		        enemies.add(enemy);
-            //    System.out.println("Enemy spawned at X: " + x + " Y: " + y);
 	        }
 	        else if("exit".equals(type)){
 	        	Exit exit = new Exit(x,y,region);

@@ -5,7 +5,9 @@ import java.util.Random;
 
 import com.moteurDeJeu.game.Model.MapManager.MapLoader.CollisionManager;
 import com.moteurDeJeu.game.Model.entity.Enemy;
-
+/**
+ * handles enemy-specific logic and updates
+ */
 public class EnemyController {
 	
 	private CollisionManager collisionManager;
@@ -16,7 +18,11 @@ public class EnemyController {
 		this.collisionManager=collisionManager;
 	}
 	
-	
+	/**
+	 * Updates all enemies
+	 * @param enemies list of enemies
+	 * @param delta time passed since last frame
+	 */
 	public void update(List<Enemy> enemies, float delta) {
         for (Enemy enemy : enemies) {
             // Let the enemy decide if it wants to change direction

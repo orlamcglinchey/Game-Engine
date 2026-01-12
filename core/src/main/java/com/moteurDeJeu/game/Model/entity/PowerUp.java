@@ -3,7 +3,9 @@ package com.moteurDeJeu.game.Model.entity;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-
+/**
+ * Represents a collectible power-up providing a health benefit
+ */
 public class PowerUp extends Entity{
 	private boolean collected = false;
 	
@@ -37,7 +39,6 @@ public class PowerUp extends Entity{
 	
 	@Override
 	public void move(int dx, int dy) {
-		// isn't going to move 
 		
 	}
 }
