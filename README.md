@@ -1,33 +1,26 @@
 # moteur_de_jeu
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+## 2D Moteur de Jeu - LibGDX & Tiled
 
-This project was generated with a template including simple application launchers and an `ApplicationAdapter` extension that draws libGDX logo.
+Ce projet est un 2D Moteur de Jeu, developpe en utilisant la bibliotheque LiGDX et Tiled map editor
+Il marche directement depuis Tiled, sans modifier le code Java.
+Les entites du jeu sont cofigurees a l'aide de cartes (.tmx) et de tilesets (.tsx)
 
-## Platforms
+Le jeu implementé est proche d'un jeu de type RPG avec gestion des collisions, ennemis, bonus et conditions de victoire/defaite. 
 
-- `core`: Main module with the application logic shared by all platforms.
-- `lwjgl3`: Primary desktop platform using LWJGL3; was called 'desktop' in older docs.
+## L'utilisation
+--------------
+Les entites sont placees directement sur la carte avec couche "entities". Chaque tile peut avoir une propriete player/enemy/exit/powerUp qui est definit en "Class" en Tiled.
+Les collisions sont gerees avec une couche "collision" qui contient des rectangles.
 
-## Gradle
+## Compilation
+------------
+J'utilise le Graddle Wrapper 
+Prerequis: Java JDK 25 / Gradle
 
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
+Pour compiler (Windows): .\gradlew build 
+Pour lancer: .\gradlew lwjgl3:run 
 
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application.
-- `test`: runs unit tests (if any).
+Le projet peut etre importe comme projet Gradle dans un IDE et lance via la classe "Lwjgl3Launcher"
 
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+
